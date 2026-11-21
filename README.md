@@ -1,26 +1,27 @@
 # Scenario MCP
 
-Подключает AI-агента к вашим сценариям в Scenario. Работает на macOS, Windows и Linux. Нужен **Node.js 22+**; Go и исходники сервиса не нужны.
+Connect your AI agent to [Scenario](https://scenario.whyamsx.com).
 
-1. В [Scenario](https://scenario.whyamsx.com/app) откройте **Аккаунт → MCP-токены** и создайте токен.
-2. Добавьте в настройки MCP агента:
+1. Install [Node.js 22+](https://nodejs.org/en/download).
+2. Create a token in your Scenario account.
+3. Add this to your agent's MCP settings:
 
 ```json
 {
   "mcpServers": {
     "scenario": {
       "command": "npx",
-      "args": ["--yes", "--package", "https://github.com/whyamsx/scenario-mcp/archive/refs/tags/v0.1.0.tar.gz", "scenario-mcp"],
+      "args": ["--yes", "--package", "https://github.com/whyamsx/scenario-mcp/archive/refs/tags/v0.2.0.tar.gz", "scenario-mcp"],
       "env": { "SCENARIO_TOKEN": "YOUR_TOKEN" }
     }
   }
 }
 ```
 
-3. Замените только токен: адрес `https://scenario.whyamsx.com` уже задан, перезапустите подключение MCP. На Windows используйте `npx.cmd` вместо `npx`. Первый запуск скачает клиент; отдельно запускать его не нужно.
+On Windows, use `npx.cmd`. Restart the MCP connection. Keep your token private.
 
-Попросите агента: «Прочитай мои сценарии и изучи код и составь сценарий оформления заказа, не додумывая условия». Клиент умеет читать, создавать и изменять сценарии; предложения появляются в редакторе для принятия или отклонения человеком. Доступ определяется правами токена. Отключённые блоки заблокированы до включения.
+Ask your agent: “Read the checkout flow in my code and create a Scenario with its steps, conditions and returns. Mark unknowns; don't guess.”
 
-Если агент не находит `npx`, укажите полный путь из `which npx` (macOS/Linux) или `where npx` (Windows). Токен храните в личных настройках, не в Git. Для локального просмотра допустим адрес `http://127.0.0.1:7310`.
+The agent can list, read, create, update and validate your scenarios. Proposed edits appear in the editor for your approval.
 
-Для работы из исходников: `npm ci`, затем в конфиге `command: "node"`, `args: ["/полный/путь/src/cli.js"]`.
+This public package connects locally over stdio to the MCP service at `https://scenario-mcp.whyamsx.com/mcp`. The service is deployed with Scenario. For another server, add `--url https://your-mcp-domain` to `args`.
