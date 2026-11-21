@@ -22,6 +22,6 @@ On Windows, use `npx.cmd`. Restart the MCP connection. Keep your token private.
 
 Ask your agent: “Read the checkout flow in my code and create a Scenario with its steps, conditions and returns. Mark unknowns; don't guess.”
 
-The agent can list, read, create, update and validate your scenarios. Proposed edits appear in the editor for your approval.
+The agent can list, read, create, update and validate your scenarios. Proposed edits appear in the editor for your approval. Each account can have up to 10 scenarios.
 
 [Documentation and examples](https://scenario.whyamsx.com/docs/mcp)
