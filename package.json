@@ -1,6 +1,6 @@
 {
   "name": "scenario-mcp",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Connect any MCP agent to your Scenario account",
   "type": "module",
   "bin": {
