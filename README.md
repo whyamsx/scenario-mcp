@@ -1,29 +1,18 @@
-# Scenario MCP
+# Scenario MCP (retired)
 
-Connect your AI agent to [Scenario](https://scenario.whyamsx.com).
+This package is no longer needed. The [Scenario](https://scenario.whyamsx.com) MCP server runs in the cloud, and agents connect to it by URL. There is nothing to install or update.
 
-1. Install [Node.js 22+](https://nodejs.org/en/download).
-2. Create a token in your Scenario account.
-3. Add this to your agent's MCP settings:
+Any agent that adds MCP servers by URL (Streamable HTTP) needs two values:
 
-```json
-{
-  "mcpServers": {
-    "scenario": {
-      "command": "npx",
-      "args": ["--yes", "--package", "https://github.com/whyamsx/scenario-mcp/archive/refs/tags/v0.3.0.tar.gz", "scenario-mcp"],
-      "env": { "SCENARIO_TOKEN": "YOUR_TOKEN" }
-    }
-  }
-}
+- URL: `https://scenario-mcp.whyamsx.com/mcp`
+- Header: `Authorization: Bearer YOUR_TOKEN`
+
+Claude Code:
+
+```sh
+claude mcp add --transport http --scope user scenario https://scenario-mcp.whyamsx.com/mcp --header "Authorization: Bearer YOUR_TOKEN"
 ```
 
-On Windows, use `npx.cmd`. Restart the MCP connection. Keep your token private.
+Create a token in your Scenario account. Under the new token, choose your agent and copy its settings with the token filled in. Settings for Claude, Cursor, VS Code, Codex and Gemini CLI are in the [connection guide](https://scenario.whyamsx.com/docs/mcp).
 
-Ask your agent: “Read the checkout flow in my code and create a Scenario with its steps, conditions and returns. Mark unknowns; don't guess.”
-
-The agent can list, read, create, update and validate your scenarios. Proposed edits appear in the editor for your approval. Each account can have up to 10 scenarios.
-
-If the agent reports **update required**, replace the package URL in its configuration with the one above and restart the MCP connection. Keep your existing token. If it only asks to reconnect, restart the connection to refresh its tools.
-
-[Documentation and examples](https://scenario.whyamsx.com/docs/mcp)
+If your agent still starts `scenario-mcp` with `npx`, replace that configuration with the connection above and keep your token.
